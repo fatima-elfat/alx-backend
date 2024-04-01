@@ -70,8 +70,8 @@ class Server:
             "page_size": page_size,
             "page": page,
             "data": page_data,
-            "next": next,
-            "previous": previous,
+            "next_page": next,
+            "prev_page": previous,
             "total_pages": total_pages
         }
         return hyper_dict
