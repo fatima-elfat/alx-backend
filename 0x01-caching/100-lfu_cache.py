@@ -34,12 +34,15 @@ class LFUCache(BaseCaching):
                 if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                     # for dictionary popitem Pairs are returned
                     # in LIFO order if last is true or FIFO order if false.
-                    sorted(self.frequently.items(), key=lambda x: x[1])
-                    key_ = list(self.frequently.keys())[0]
-                    least_used, _ = self.cache_data.pop(key_)
-                    print("DISCARD:", least_used)
-                self.cache_data[key] = item
+                    ordered_l = sorted(
+                        self.frequently.items(),
+                        key=lambda x: x[1])
+                    key_, _ = list(ordered_l)[0]
+                    self.cache_data.pop(key_)
+                    self.frequently.pop(key_)
+                    print("DISCARD:", key_)
                 self.frequently[key] = 0
+            self.cache_data[key] = item
             self.frequently[key] += 1
 
     def get(self, key):
