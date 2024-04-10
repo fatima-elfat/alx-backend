@@ -30,7 +30,7 @@ users = {
 }
 
 
-@app.route("/", methods=["GET"], strict_slashes=False)
+@app.route("/")
 def task06() -> str:
     """
     “Welcome to Holberton” as page title.
