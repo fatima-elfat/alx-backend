@@ -24,7 +24,7 @@ app.config.from_object(Config)
 
 
 @app.route("/", methods=["GET"], strict_slashes=False)
-def task01() -> str:
+def task02() -> str:
     """
     “Welcome to Holberton” as page title.
     """
