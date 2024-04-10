@@ -50,15 +50,16 @@ def get_locale() -> str:
         Locale from request header
         Default locale
     """
-    req = request.args.get('locale')
-    if req in app.config['LANGUAGES']:
-        return req
-    if g.user and g.user.get('locale'):
-        if g.user.get('locale') in app.config['LANGUAGES']:
-            return g.user.get('locale')
-    req = request.headers.get('locale', '')
-    if req in app.config["LANGUAGES"]:
-        return req
+    a = request.args.get('locale')
+    if a in app.config['LANGUAGES']:
+        return a
+    if g.user:
+        b = g.user.get('locale')
+        if b in app.config['LANGUAGES']:
+            return b
+    c = request.headers.get('locale')
+    if c in app.config["LANGUAGES"]:
+        return c
     return request.accept_languages.best_match(
         app.config['LANGUAGES']
     )
